@@ -1,4 +1,4 @@
-/*let declarations are scoped to the neaest block and not hoisted
+/*let declarations are scoped to the nearest block and not hoisted
 const are block scoped not hoisted. read only after declaration. 
 
 
@@ -51,7 +51,7 @@ rest parameter used in function definition
 function displaytags (...tags){
 
 
-	//created array of aruments, mrest parameter must be last argument in function
+	//created array of arguments, mrest parameter must be last argument in function
 
 
 
@@ -121,7 +121,7 @@ Regards ${fromHell.sysop}`;
 
 /*
 newlines will be preserved. having strings like this is against the 
-javascript style guide by google which prefers concatination. wondering
+javascript style guide by google which prefers concatenation. wondering
 how that would look with template strings
 */
 
@@ -141,7 +141,8 @@ object.assign method copies properties from one or more source objects to
 // a target object specified as the very first argument. Leaves source
 // objects intact, and only overwrites missing  values. Order of parameter 
 //objects must matter here
-// or options would be overwritten by defaults. 
+// or options would be overwritten by defaults. Yep, value from the last chain
+takes precedence
 
 
 
@@ -150,3 +151,49 @@ let settings = Object.assign({},defaults,options);
 
 }
 
+
+
+/* array destructuring 
+
+*/
+
+let users = ["meow", "moo", "blah"];
+
+let [a,b,c] = users;
+console.log (a,b,c); // meow moo blah
+
+let [a,,b] = users ;
+console.log (a,b) // meow blah
+
+let [first, ...rest] = users;
+console.log (first,rest); // meow["moo","blah"]
+
+
+
+function activeUsers(){
+let users = ["meow", "moo", "blah"];
+return users;
+
+}
+
+let [a,b,c] = activeUsers();
+console.log(a,b,c)// meow moo blah
+
+
+// for of loops - for arrays mmainly. To work with objects, needs Symbol.iterator property. 
+
+let users = ["meow", "moo", "blah"];
+
+for (let name of users){
+	console.log(name); // meow moo blah
+}
+//array.find, returns first element in array matching return expression, in this case first admin that is truthy
+
+'use strict'
+let users = [{name:"meow", admin:true} ,{name:"moo",admin:true} ,{name:"blah", admin:false}];
+let admin = users.find( (user) => {
+	return user.admin;
+
+
+});
+console.log(admin) ;// 
