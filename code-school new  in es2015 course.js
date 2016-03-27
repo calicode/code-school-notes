@@ -105,6 +105,7 @@ let someFunc(){
 
 
 //template strings, string literals with support for interpolation
+// wrapped in backtics 
 
 let fullName = `${first} ${last}`;
 
@@ -118,4 +119,34 @@ to hell
 
 Regards ${fromHell.sysop}`;
 
-newlines will be preserved
+/*
+newlines will be preserved. having strings like this is against the 
+javascript style guide by google which prefers concatination. wondering
+how that would look with template strings
+*/
+
+//object.assign
+
+function countdownTimer(target,timeLeft,options = {}){
+
+//using default object
+let defaults = {
+	container: ".timer-display",
+	timeUnit:"seconds",
+
+	etc etc etc
+};
+/*
+object.assign method copies properties from one or more source objects to
+// a target object specified as the very first argument. Leaves source
+// objects intact, and only overwrites missing  values. Order of parameter 
+//objects must matter here
+// or options would be overwritten by defaults. 
+
+
+
+*/
+let settings = Object.assign({},defaults,options);
+
+}
+
