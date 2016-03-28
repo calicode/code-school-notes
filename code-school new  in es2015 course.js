@@ -197,3 +197,53 @@ let admin = users.find( (user) => {
 
 });
 console.log(admin) ;// 
+
+/*Map object is a simple key/value data structure.  Any value may be used as either a key or a value
+and objects are not converted to strings. 
+
+*/
+
+let user1 = {name:"Sam"};
+let user2  = {name:"Spade"};
+let totalReplies = new Map();
+totalReplies.set(user1,5);
+totalReplies.set(user2,42);
+
+console.log totalReplies.get(user1) //5
+console.log totalReplies.get(user2) //42
+ 
+
+ /*weakmaps, type of map where only objects can be passed as keys.  Not iterable. 
+ Better with memory as they can be garbage collected while weakmap still exists*/
+
+ new WeakMap();
+
+
+ 
+ /*Sets 
+Set object stores unique values of any type. Unlike array which can have duplicate entries
+Duplicate entries are ignored. Set objets are  iterable and can be used with for of
+
+Weak sets, same concept as weakmaps. 
+
+
+
+
+
+ */
+let tags = new Set
+tags.add("Javascript");
+tags.add({cats:"meow"});
+tags.add(42)
+
+/*weak sets can be used to create special groups from existing objects without mutating them
+favoring immutable objects allows for much simpler code with no unexpected side effects.
+
+for example when a user reads a post, add the post to a weakset of readposts and then
+use the weakset .has method to check if the weakset has the post. Original post object is
+not touched. 
+*/
+
+
+// <-------------Section 6 : Classes --------->
+
