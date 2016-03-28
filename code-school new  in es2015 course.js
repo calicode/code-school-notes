@@ -245,5 +245,69 @@ not touched.
 */
 
 
-// <-------------Section 6 : Classes --------->
+// <-------------Section 5 : Classes --------->
 
+class SponsorWidget {
+	constructor(name,description,url){
+	this.name = name;
+	this.description = description
+	this.url = url;	
+	}
+
+	render(){
+
+	}
+	meowAlert(){
+
+	}
+}
+
+
+let catnip_sponsorWidget = new SponsorWidget("catnip contraptions", "catnip toys", "www.catnips.com/meow")
+catnip_sponsorWidget.render();
+
+// Using exends in a subclass to inherit properties of base class
+class newWidget extends SponsorWidget {
+	constructor(name,description,url){
+		super(name,description,url); //  causes parents constructor method to be invoked?
+	}
+
+	render(){
+		this.meowAlert(this.name);
+	}
+
+}
+
+
+// modules
+//flash-message.js
+export function alertMessage(message) {
+
+	alert(message);
+}
+export function logMessage(message){
+/
+or export {alertMessage,logmessage};
+}
+
+//app.js
+
+import {  flashMesage, logmessage} from './flash-message';
+or
+import  * as flash from './flash-message'
+flash.alertMessage("blah");
+
+
+// exporting constants so they can be used in multiple places and only updated once
+//constants.js
+export const MAX_USERS = 3;
+
+//lapp.js
+import {MAX_USERS} from './constants';
+
+
+
+
+html still has script tags calling both
+
+// Section 6 - Promises
