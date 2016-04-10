@@ -310,4 +310,97 @@ import {MAX_USERS} from './constants';
 
 html still has script tags calling both
 
-// Section 6 - Promises
+// Section 6 - Promises iterators and generators
+
+function getPollresultsFromServer(pollName){
+
+	return new Promise(function(resolve,reject){
+		resolve(someValue);
+		reject(someValue;)
+	});
+};
+
+Promise lifecyle, new promises is in pending state, it can then become fulfilled or rejected
+
+function getPollresultsfomServer("Cats Vs Dogs"){
+return new Promise(function(resolve,reject){
+
+
+	request.onload=function() {
+		if(request.status >=200 && request.status < 400){
+			resolve(request.response);
+
+		}else {
+			reject(new Error(request.status));
+		}
+};
+
+	request.onerror = function() {
+		reject(new Error("Error fetching results"));
+	};
+});
+
+
+
+
+
+}
+getPollresultsFromServer("Cats vs. Dogs")
+.then(function(results){
+	return results.filter((result) => result.city === "Chicago");})
+.then(function(resultsFromChicago) {
+	ui.Render(resultsFromChicago);
+});
+
+
+export default function getReplies(topicId){
+  return new Promise(function( resolved,rejected){
+    _getRepliesForTopic(topicId, function(data){
+      let replies = data.replies;
+      if(replies){
+      resolved(replies);  
+      }else{
+        let error = new Error("An error occurred");
+        rejected(error);
+      }
+    });
+  });
+}
+
+
+
+/* Iterators
+Iterables  return an iterator object. this object knows how to access items from a collection  1 
+at a time, while keeping track of its current position within the sequence. 
+basically adds .next method to object and isDone and count so that you can loop through a collection
+until count === collection.length and then you set isDone to true. 
+*/
+
+
+
+/*generators The function * declaration defines generator functions. These are special functions
+from which we can use the yield keyword to return iterator object
+
+Generator functions return objects that provide the same next method expected by
+for of, spread operator, and destructuring. 
+s*/
+
+
+function  *nameList(){
+	yield "Sam"
+	yield "tyler";
+}
+
+
+
+let post = {title: "blah moo",  replied:19};
+
+post[Symbol.iterator] = function  *() {
+
+	let properties = Object.keys(this);
+	for (let p of properties){
+		yield this[p];
+	}
+}
+
+
