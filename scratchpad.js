@@ -9,6 +9,7 @@ else {console.log(i);}
 
 'use strict'
 
+
 var chessBoard = function  (size){
 
 var board = "";
