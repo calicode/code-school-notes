@@ -1,0 +1,21 @@
+{
+  "name": "code-school-real_time_web_with_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello_dog.js",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "request": "^2.71.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon hello_dog.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
