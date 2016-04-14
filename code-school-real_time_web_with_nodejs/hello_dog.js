@@ -110,6 +110,7 @@ can use ranges e.x "connect"
 
 //Chapter 5 - express
 
+/* 
 var express = require('express');
 var app = express();
 var request= require('request');
@@ -140,6 +141,9 @@ app.get('/wiki/:searchString', function(req,response) {
 	console.log(wikiUrl);
 	request(wikiUrl,function(err,res,body){
 var wikiResults = JSON.parse(body);
+for (var pageid in wikiResults.query.pages) {
+	console.log(wikiResults.query.pages[pageid].title);
+}
 console.log(wikiResults.query.pages);
 response.locals = {title:searchString,pages:wikiResults.query.pages};
 response.render('wikiResults.ejs');
@@ -150,7 +154,51 @@ response.render('wikiResults.ejs');
 app.listen(8080);
 
 // not working due to twitter api changes since video    was produced. will modify . 1.1 api requires 
-// authentication i get the jist and this looks nicer than doing a json request with a huge url
-/* didn't want to l  ink mobile phone with twitter account so i just  used what I know of wiki api to 
-continue the course */
+// authentication i get the j ist and this looks nice  r than doing a json request with a huge url
+ didn't want to l  ink mobile phone with twitter account so i just  used what I know of wiki api to 
+continue the course 
 
+ this works now. ejs uses  <%= for  identifiers and <= for expressions. 
+*/ 
+
+
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
+var current_chatters = [];
+
+io.on('connection', function(client){
+
+	console.log('Client connected...');
+	client.on('messages',function(data) {
+var broadcast_message = client.nickname + ":" + data;
+		client.broadcast.emit("messages",broadcast_message);
+		client.emit("messages",broadcast_message);
+	client.broadcast.emit("chatters",current_chatters);
+
+	});
+	client.on('join', function(name){
+	client.nickname = name;
+
+	if (current_chatters.indexOf(name) === -1) {
+		
+		current_chatters.push(name);
+		console.log(name,"not found addint to list which is now ",current_chatters);
+	client.broadcast.emit("chatters",current_chatters);
+
+	}
+	else { console.log(name,"already found at index ",current_chatters.indexOf(name));}
+
+	
+	});
+
+
+});
+// try doing this with express or something so so much js isn't viewable by client. 
+app.get('/', function(req,res) {
+	res.sendFile(__dirname + '/index.html');
+});
+
+server.listen(8080);

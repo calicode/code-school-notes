@@ -1,9 +1,8 @@
-<h1> Search results for @<%= title %> </h1>
+<h1> Search results for <%= title %> </h1>
 <ul>
-<%= for (var result in pages){
-if (pages.hasOwnProperty(result)){
-%> <li> <%=  pages.result.title%> </li>
-<% }} %>
+<% for (var result in pages){ %> 
+<li><h2> <a href ="http://en.wikipedia.org/?curid=<%= result%>"  > <%=  pages[result].title %></a></h2> <p> <%= pages[result].extract %> </p> </li>
+<% } %>
 
 
 

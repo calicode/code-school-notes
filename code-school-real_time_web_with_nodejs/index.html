@@ -1,1 +1,46 @@
-<html> <head></head> <title> hi </title> <body> <p> hello dog </p> </body> </html>
+<html> 
+<head>
+<script src = "/socket.io/socket.io.js"> </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head> 
+<title> hi </title> 
+<body> 
+<p> hello dogz </p> 
+<div id = "chatters"> </div>
+<form id = "chat_form">
+<input type="text" id="chat_input"> 
+<input type="submit"  value="Send">
+<div id = chat_output> </div>
+</form>
+</body> 
+
+<script> var socket = io.connect('http://localhost:8080'); 
+$(document).ready(function(){
+var nickname = window.prompt("What is your nickname?");
+if (nickname !== ""){
+socket.emit('join',nickname);
+
+}
+
+});
+
+
+$('#chat_form').submit(function(e) {
+    e.preventDefault();
+    var message = $('#chat_input').val();
+    console.log(message);
+    socket.emit('messages',message);
+    $('#chat_input').val("");
+});
+socket.on('messages', function(data){
+$('#chat_output').append(data,"<br>");
+
+});
+socket.on('chatters', function(data){
+$("#chatters").empty();
+$('#chatters').append(data," ");
+
+});
+
+</script>
+</html>
